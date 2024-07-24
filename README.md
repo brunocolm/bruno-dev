@@ -53,7 +53,7 @@ Start the development server by running:
     # or
     yarn dev
     ```
-
+    
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
@@ -64,16 +64,12 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 To create an optimized production build, run:
 
-    ```bash
     npm run build
     # or
     yarn build
-    ```
 
 Then, start the production server with:
 
-    ```bash
     npm start
     # or
     yarn start
-    ```
