@@ -1,6 +1,8 @@
 import React from "react";
+import { IconPosition, MainButton } from "./ui/MainButton";
 import { Spotlight } from "./ui/spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import { FaCode } from "react-icons/fa6";
 
 const Hero = () => {
   return (
@@ -26,8 +28,14 @@ const Hero = () => {
           </h2>
           <TextGenerateEffect
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
-            words="This is an example of text being generated. Duck yeah! 🦆"
+            words="Seamless Solutions for Every Need."
           />
+          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+            Welcome! My name is Bruno and I&apos;m a fullstack developer
+          </p>
+          <a href="#about" className="md:mt-10">
+            <MainButton icon={<FaCode />} title="See More" position={IconPosition.Right} />
+          </a>
         </div>
       </div>
     </div>
