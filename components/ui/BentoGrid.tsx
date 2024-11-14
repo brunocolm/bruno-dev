@@ -10,6 +10,7 @@ import { IconPosition, MainButton } from "./MainButton";
 import { FiCopy } from "react-icons/fi";
 import animationData from "@/data/confetti.json";
 import Lottie from "react-lottie";
+import { ColorGridDemo } from "./ColorGridDemo";
 
 export const BentoGrid = ({
   className,
@@ -92,6 +93,8 @@ export const BentoGridItem = ({
             />
           )}
         </div>
+        {id === 1 && <GlobeDemo />}
+        {id === 3 && <ColorGridDemo />}
         {id === 6 && (
           <BackgroundGradientAnimation>
             <div className="absolute z-50 flex items-center justify-center text-white font-bold" />
@@ -106,13 +109,13 @@ export const BentoGridItem = ({
           <div className="font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10">
             {description}
           </div>
-          <div className="font-sans font-bold text-lg lg:text-xl max-w-96 z-10">
+          <div className={`${id !== 1 && 'max-w-96'}font-sans font-bold text-lg lg:text-xl z-10`}>
             {title}
           </div>
-          {id === 2 && <GlobeDemo />}
-          {id === 3 && (
+          
+          {id === 2 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
-              <div className="flex flex-col gap-3 lg:gap-8">
+              <div className="flex flex-col gap-3 lg:gap-6">
                 {["ReactJS", "NextJS", "Typescript"].map((item, i) => {
                   return (
                     <span
@@ -125,7 +128,7 @@ export const BentoGridItem = ({
                 })}
                 <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]" />
               </div>
-              <div className="flex flex-col gap-3 lg:gap-8">
+              <div className="flex flex-col gap-3 lg:gap-6">
                 <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]" />
                 {["React Native", "AWS", "MongoDB"].map((item, i) => {
                   return (

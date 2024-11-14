@@ -23,7 +23,7 @@ export default function Home() {
   ];
   return (
     <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10">
-      <div className="max-w-7xl w-full mb-16">
+      <div className="max-w-7xl w-full mb-12">
         <h1>Bruno Development</h1>
         <NavBar navItems={navItems} />
         <Hero />
