@@ -60,8 +60,8 @@ export const gridItems: any[] = [
   },
   {
     id: 5,
-    title: "Currently improving my DevOps skills",
-    description: "More specifically with AWS",
+    title: "Currently sharpening my DevOps skills",
+    description: "Continuously improving",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-center",

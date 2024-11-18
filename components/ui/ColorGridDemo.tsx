@@ -6,7 +6,9 @@ import { cn } from "@/utils/cn";
 export function ColorGridDemo() {
   return (
     <div className="relative w-full h-full bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-      <ColorGrid />
+      <div className="absolute w-full h-full self-center">
+        <ColorGrid />
+      </div>
       <h1 className={cn("md:text-4xl text-xl text-white relative z-20")}>
         Dynamic Styles
       </h1>

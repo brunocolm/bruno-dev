@@ -22,7 +22,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 md:grid-row-7 gap-4 lg:gap-8 mx-auto",
+        "grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 md:grid-row-7 gap-4 lg:gap-7 mx-auto px-5 sm:px-0",
         className
       )}
     >
@@ -70,7 +70,13 @@ export const BentoGridItem = ({
           "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(54,54,120,1) 28%, rgba(110,0,148,1) 100%)",
       }}
     >
-      <div className={`${id === 6 && "flex justify-center"} h-full`}>
+      <div
+        className={cn(
+          `h-full ${id === 1 && "flex flex-col overflow-visible"} ${
+            id === 6 && "flex justify-center"
+          }`
+        )}
+      >
         <div className={"w-full h-full absolute"}>
           {img && (
             <img
@@ -103,16 +109,23 @@ export const BentoGridItem = ({
         <div
           className={cn(
             titleClassName,
-            "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col p-5"
+            `group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col p-5 ${
+              id === 1 && "flex justify-end lg:pb-7 md:pr-10 min-h-30"
+            }`
           )}
         >
           <div className="font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10">
             {description}
           </div>
-          <div className={`${id !== 1 && 'max-w-96'}font-sans font-bold text-lg lg:text-xl z-10`}>
+          <div
+            className={cn(
+              `font-sans font-bold text-lg lg:text-xl z-10 ${
+                id !== 1 && "max-w-96"
+              } `
+            )}
+          >
             {title}
           </div>
-          
           {id === 2 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
               <div className="flex flex-col gap-3 lg:gap-6">

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const World = dynamic(
@@ -29,7 +28,7 @@ export function GlobeDemo() {
     directionalTopLight: "#ffffff",
     pointLight: "#ffffff",
     arcTime: 1000,
-    arcLength: 0.9,
+    arcLength: 0.5,
     rings: 1,
     maxRings: 3,
     initialPosition: { lat: 22.3193, lng: 114.1694 },
@@ -62,7 +61,7 @@ export function GlobeDemo() {
       startLng: -43.951191,
       endLat: -1.303396,
       endLng: 36.852443,
-      arcAlt: 0.5,
+      arcAlt: 0.4,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -125,7 +124,7 @@ export function GlobeDemo() {
       startLng: 8.571831,
       endLat: -15.595412,
       endLng: -56.05918,
-      arcAlt: 0.5,
+      arcAlt: 0.4,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -134,7 +133,7 @@ export function GlobeDemo() {
       startLng: -58.3816,
       endLat: 22.3193,
       endLng: 114.1694,
-      arcAlt: 0.7,
+      arcAlt: 0.5,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -179,7 +178,7 @@ export function GlobeDemo() {
       startLng: 28.315853,
       endLat: 1.094136,
       endLng: -63.34546,
-      arcAlt: 0.7,
+      arcAlt: 0.5,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -251,7 +250,7 @@ export function GlobeDemo() {
       startLng: 103.8198,
       endLat: 40.7128,
       endLng: -74.006,
-      arcAlt: 0.5,
+      arcAlt: 0.4,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -269,7 +268,7 @@ export function GlobeDemo() {
       startLng: 114.1694,
       endLat: -22.9068,
       endLng: -43.1729,
-      arcAlt: 0.7,
+      arcAlt: 0.5,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -278,7 +277,7 @@ export function GlobeDemo() {
       startLng: 103.8198,
       endLat: -34.6037,
       endLng: -58.3816,
-      arcAlt: 0.5,
+      arcAlt: 0.4,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -287,7 +286,7 @@ export function GlobeDemo() {
       startLng: -43.1729,
       endLat: 28.6139,
       endLng: 77.209,
-      arcAlt: 0.7,
+      arcAlt: 0.5,
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
     {
@@ -401,12 +400,8 @@ export function GlobeDemo() {
   ];
 
   return (
-    <div className="flex items-center justify-center absolute md:top-10 w-full ">
-      <div className="container relative px-4 h-96">
-        <div className="absolute inset-0 h-72 md:h-full z-10">
-          <World data={sampleArcs} globeConfig={globeConfig} />
-        </div>
-      </div>
+    <div className="flex h-full overflow-visible md:pt-5 min-h-60">
+      <World data={sampleArcs} globeConfig={globeConfig} />
     </div>
   );
 }
