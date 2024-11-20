@@ -2,6 +2,7 @@
 import { socialMedia } from "@/data";
 import React from "react";
 import { FaLocationArrow } from "react-icons/fa6";
+import { AnimatedModalDemo } from "./ContactFormModal";
 import { IconPosition, MainButton } from "./MainButton";
 import { SparklesPreview } from "./SparklesUnderline";
 
@@ -17,11 +18,12 @@ const Footer = () => {
         </p> */}
         <SparklesPreview text={"Make your dreams come true"} />
         <div className={"flex w-1/2 justify-center max-w-[250px]"}>
-          <MainButton
+          {/* <MainButton
             title="Lets get in touch"
             icon={<FaLocationArrow />}
             position={IconPosition.Right}
-          />
+          /> */}
+          <AnimatedModalDemo />
         </div>
       </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between w-full items-center md:items-stretch">
