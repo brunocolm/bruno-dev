@@ -110,7 +110,7 @@ export const BentoGridItem = ({
           className={cn(
             titleClassName,
             `group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col p-5 ${
-              id === 1 && "flex justify-end lg:pb-7 md:pr-10 min-h-30"
+              id === 1 && "flex justify-end lg:pb-7 md:pr-10 min-h-30 md:h-auto"
             }`
           )}
         >
