@@ -12,12 +12,13 @@ const Footer = () => {
       </p>
       <div className="flex items-center gap-3 md:gap-4">
         {socialMedia.map((profile) => (
-          <div
+          <a
             key={profile.id}
             className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounder-lg border border-black-300"
+            href={profile.url}
           >
             {profile.icon}
-          </div>
+          </a>
         ))}
       </div>
     </footer>

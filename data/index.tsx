@@ -87,10 +87,11 @@ export const gridItems: any[] = [
 interface SocialMediaItem {
   id: number;
   name: string;
+  url: string;
   icon: React.ReactNode; // Corrected type for React components
 }
 
 export const socialMedia: SocialMediaItem[] = [
-  { id: 1, name: "GitHub", icon: <FaGithub className="w-7 h-7" /> },
-  { id: 2, name: "LinkedIn", icon: <FaLinkedin className="w-7 h-7" /> },
+  { id: 1, name: "GitHub", url: "https://github.com/brunocolm", icon: <FaGithub className="w-7 h-7" /> },
+  { id: 2, name: "LinkedIn", url: "https://www.linkedin.com/in/bruno-colmenares",icon: <FaLinkedin className="w-7 h-7" /> },
 ];
