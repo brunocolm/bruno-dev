@@ -1,10 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
-import { socialMedia } from "@/data";
 import React from "react";
-import { FaLocationArrow } from "react-icons/fa6";
-import { AnimatedModalDemo } from "./ContactFormModal";
-import { IconPosition, MainButton } from "./MainButton";
-import { SparklesPreview } from "./SparklesUnderline";
+import { socialMedia } from "@/data";
 
 const Footer = () => {
   return (
@@ -15,18 +10,13 @@ const Footer = () => {
       <p className="md:text-base text-sm md:font-normal font-light self-center mb-5 md:mb-0">
         Copyright © 2024 Bruno Colmenares
       </p>
-      <div className="flex items-center gap-3 md:gap-6">
+      <div className="flex items-center gap-3 md:gap-4">
         {socialMedia.map((profile) => (
           <div
             key={profile.id}
             className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounder-lg border border-black-300"
           >
-            <img
-              src={profile.img}
-              alt={profile.id.toString()}
-              width={20}
-              height={20}
-            />
+            {profile.icon}
           </div>
         ))}
       </div>
