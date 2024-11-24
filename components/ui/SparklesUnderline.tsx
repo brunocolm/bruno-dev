@@ -10,7 +10,7 @@ interface SparklesPreviewProps{
 
 export function SparklesPreview({text,className,textClassName}:SparklesPreviewProps) {
   return (
-    <div className={className || "h-[15rem] w-full flex flex-col items-center justify-center overflow-hidden rounded-md"}>
+    <div className={className || "w-full flex flex-col items-center justify-center overflow-hidden rounded-md"}>
       <h1 className={textClassName || "md:text-5xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20"}>
         {text}
       </h1>

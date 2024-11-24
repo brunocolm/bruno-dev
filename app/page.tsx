@@ -1,6 +1,7 @@
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
 import Footer from "@/components/ui/Footer";
+import Contact from "@/components/ui/Contact";
 import { NavBar } from "@/components/ui/NavBar";
 import { FaHome } from "react-icons/fa";
 
@@ -15,12 +16,7 @@ export default function Home() {
       name: "About",
       link: "/#about",
       icon: <FaHome />,
-    },
-    {
-      name: "Wizarzy",
-      link: "/wizardy",
-      icon: <FaHome />,
-    },
+    }
   ];
   return (
     <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-clip mx-auto sm:px-10">
@@ -29,6 +25,7 @@ export default function Home() {
         <NavBar navItems={navItems} />
         <Hero />
         <Grid />
+        <Contact />
         <Footer />
       </div>
     </main>

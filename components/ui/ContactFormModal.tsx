@@ -8,12 +8,11 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { IconPosition, SlideTextMainButton } from "./MainButton";
 
 //TODO: Need to fix height responsive
-//TODO: Form error
 //TODO: Character count
 
 export function AnimatedModalDemo() {
   return (
-    <div className="py-40  flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <Modal>
         <ModalTrigger className="p-0 group/modal-btn">
           <SlideTextMainButton
@@ -42,7 +41,7 @@ export const ContactForm = () => {
   return (
     <>
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-        Let's get in touch
+        Let&apos;s get in touch
       </h2>
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
         Have questions or ideas? Don’t hesitate to reach out—we can collaborate
@@ -65,7 +64,7 @@ export const ContactForm = () => {
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="message">Message*</Label>
-          <TextArea id="message" placeholder="Your message here..." />
+          <TextArea id="message" placeholder="Your message here..." required/>
         </LabelInputContainer>
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-1/2 text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
