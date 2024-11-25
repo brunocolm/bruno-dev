@@ -1,8 +1,8 @@
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
-import Footer from "@/components/ui/Footer";
-import Contact from "@/components/ui/Contact";
-import { NavBar } from "@/components/ui/NavBar";
+import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
+import { NavBar } from "@/components/NavBar";
 import { FaHome } from "react-icons/fa";
 
 export default function Home() {

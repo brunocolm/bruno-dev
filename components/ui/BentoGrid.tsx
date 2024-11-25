@@ -9,8 +9,10 @@ import { useState } from "react";
 import { IconPosition, MainButton } from "./MainButton";
 import { FiCopy } from "react-icons/fi";
 import animationData from "@/data/confetti.json";
-import Lottie from "react-lottie";
 import { ColorGridDemo } from "./ColorGridDemo";
+/* import Lottie from "lottie-react"; */
+import dynamic from "next/dynamic";
+const DynamicLottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export const BentoGrid = ({
   className,
@@ -158,16 +160,11 @@ export const BentoGridItem = ({
           )}
           {id === 6 && (
             <div className="mt-5 relative">
-              <div className={`absolute -bottom-5 right-0`}>
-                <Lottie
-                  options={{
-                    loop: copied,
-                    autoplay: copied,
-                    animationData: animationData,
-                    rendererSettings: {
-                      preserveAspectRatio: "xMidYMid slice",
-                    },
-                  }}
+              <div className={cn(`absolute md:-bottom-28 -bottom-16 ${copied && "z-20"}`)}>
+                <DynamicLottie
+                  animationData={animationData}
+                  loop={copied}
+                  autoplay={copied}
                 />
               </div>
 

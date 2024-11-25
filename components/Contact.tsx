@@ -1,6 +1,6 @@
 import React from "react";
-import { AnimatedModalDemo } from "./ContactFormModal";
-import { SparklesPreview } from "./SparklesUnderline";
+import { AnimatedModalDemo } from "./ui/ContactFormModal";
+import { SparklesPreview } from "./ui/SparklesUnderline";
 
 const Contact = () => {
   return (
