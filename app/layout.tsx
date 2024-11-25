@@ -18,6 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <title>Bruno development</title>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
