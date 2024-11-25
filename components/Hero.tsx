@@ -1,6 +1,6 @@
 import React from "react";
 import { IconPosition, MainButton } from "./ui/MainButton";
-import { Spotlight } from "./ui/spotlight";
+import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { FaCode } from "react-icons/fa6";
 

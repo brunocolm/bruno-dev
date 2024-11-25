@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Label } from "./Label";
-import { Input, TextArea } from "./input";
+import { Input, TextArea } from "./Input";
 import { cn } from "@/utils/cn";
 import { Modal, ModalBody, ModalContent, ModalTrigger } from "./AnimatedModal";
 import { FaLocationArrow } from "react-icons/fa6";
