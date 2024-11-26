@@ -34,10 +34,29 @@ export function AnimatedModalDemo() {
 /////////////////////////////////
 
 export const ContactForm = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted");
-  };
+  async function handleSubmit(event: any) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", process.env.WEB3FORMS_ACCESS_KEY as any);
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: json,
+    });
+    const result = await response.json();
+    if (result.success) {
+      console.log(result);
+    }
+  }
+
   return (
     <>
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
@@ -64,7 +83,7 @@ export const ContactForm = () => {
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="message">Message*</Label>
-          <TextArea id="message" placeholder="Your message here..." required/>
+          <TextArea id="message" placeholder="Your message here..." required />
         </LabelInputContainer>
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-1/2 text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"

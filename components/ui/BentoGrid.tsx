@@ -12,6 +12,7 @@ import animationData from "@/data/confetti.json";
 import { ColorGridDemo } from "./ColorGridDemo";
 /* import Lottie from "lottie-react"; */
 import dynamic from "next/dynamic";
+import { developerEmail } from "@/data";
 const DynamicLottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export const BentoGrid = ({
@@ -55,7 +56,7 @@ export const BentoGridItem = ({
   const [copied, setCopied] = useState<boolean>(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("email@email.com");
+    navigator.clipboard.writeText(developerEmail);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

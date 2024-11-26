@@ -13,13 +13,15 @@ interface GridItem {
   spareImg?: string;
 }
 
+export const developerEmail = "brunoc.develop@gmail.com"
+
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
   { name: "Contact", link: "#contact" },
 ];
 
-export const gridItems: any[] = [
+export const gridItems: GridItem[] = [
   {
     id: 1,
     title:
