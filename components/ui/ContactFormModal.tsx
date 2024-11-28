@@ -1,30 +1,60 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "./Label";
 import { Input, TextArea } from "./Input";
 import { cn } from "@/utils/cn";
 import { Modal, ModalBody, ModalContent, ModalTrigger } from "./AnimatedModal";
-import { FaLocationArrow } from "react-icons/fa6";
+import { FaLocationArrow, FaStar } from "react-icons/fa6";
 import { IconPosition, SlideTextMainButton } from "./MainButton";
+import { developerEmail } from "@/data";
+import { HiXCircle } from "react-icons/hi2";
 
 //TODO: Need to fix height responsive
 //TODO: Character count
 
+enum SubmitStatus {
+  PENDING = "PENDING",
+  SENT = "SENT",
+  ERROR = "ERROR",
+}
+
 export function AnimatedModalDemo() {
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(
+    SubmitStatus.PENDING
+  );
+
   return (
     <div className="flex items-center justify-center">
       <Modal>
         <ModalTrigger className="p-0 group/modal-btn">
           <SlideTextMainButton
-            defaultText="Let's get in touch"
-            slideText="🚀🚀🚀"
-            icon={<FaLocationArrow />}
+            defaultText={
+              submitStatus === SubmitStatus.PENDING
+                ? "Let's get in touch"
+                : "Thank you!"
+            }
+            slideText={
+              submitStatus === SubmitStatus.PENDING ? "🚀🚀🚀" : "🔮🔮🔮"
+            }
+            icon={
+              submitStatus === SubmitStatus.PENDING ? (
+                <FaLocationArrow />
+              ) : (
+                <FaStar />
+              )
+            }
             position={IconPosition.Right}
           />
         </ModalTrigger>
         <ModalBody>
-          <ModalContent>
-            <ContactForm />
+          <ModalContent
+            className={cn(`${submitStatus !== SubmitStatus.PENDING && "md:p-0 p-0 h-full"}`)}
+          >
+            {submitStatus === SubmitStatus.PENDING && (
+              <ContactForm setSubmitStatus={setSubmitStatus} />
+            )}
+            {submitStatus === SubmitStatus.SENT && <SubmitMessage />}
+            {submitStatus === SubmitStatus.ERROR && <ErrorMessage />}
           </ModalContent>
         </ModalBody>
       </Modal>
@@ -33,7 +63,40 @@ export function AnimatedModalDemo() {
 }
 /////////////////////////////////
 
-export const ContactForm = () => {
+export const SubmitMessage = () => {
+  return (
+    <div className="flex flex-col justify-center items-center absolute h-full w-full -z-10">
+      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+        Thank you for reaching out!
+      </h2>
+      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
+        I&apos;ve received your message and will get back to you shortly.
+      </p>
+    </div>
+  );
+};
+
+export const ErrorMessage = () => {
+  return (
+    <div className="flex flex-col justify-around items-center absolute h-full w-full -z-10 py-20">
+      <HiXCircle color={"#2C2C31"} className={"h-20 w-20"} />
+      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+        Oops! Something went wrong.
+      </h2>
+      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
+        Please feel free to contact me directly at{" "}
+        <span className="font-bold">{developerEmail}</span>, or try submitting
+        the form again later.
+      </p>
+    </div>
+  );
+};
+
+interface ContactFormProps {
+  setSubmitStatus: React.Dispatch<React.SetStateAction<SubmitStatus>>;
+}
+
+export const ContactForm = ({ setSubmitStatus }: ContactFormProps) => {
   async function handleSubmit(event: any) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -50,8 +113,10 @@ export const ContactForm = () => {
     const result = await response.json();
     if (result.success) {
       console.log("Message sent successfully!", result);
+      setSubmitStatus(SubmitStatus.SENT);
     } else {
       console.error("Message failed to send", result);
+      setSubmitStatus(SubmitStatus.ERROR);
     }
   }
 
@@ -61,7 +126,7 @@ export const ContactForm = () => {
         Let&apos;s get in touch
       </h2>
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-        Have questions or ideas? Don’t hesitate to reach out—we can collaborate
+        Have questions or ideas? Don&apos;t hesitate to reach out—we can collaborate
         and bring your projects to life!
       </p>
 
