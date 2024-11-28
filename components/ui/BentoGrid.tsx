@@ -90,9 +90,9 @@ export const BentoGridItem = ({
           )}
         </div>
         <div
-          className={`absolute right-0 -bottom-5 ${
+          className={cn(`absolute right-0 -bottom-5 ${
             id === 5 && "w-full opacity-80"
-          }`}
+          }`)}
         >
           {spareImg && (
             <img
@@ -142,10 +142,10 @@ export const BentoGridItem = ({
                     </span>
                   );
                 })}
-                <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]" />
+                <span className="py-4 px-3 rounded-t-lg text-center bg-[#10132e]" />
               </div>
               <div className="flex flex-col gap-3 lg:gap-6">
-                <span className="py-4 px-3 rounded-lg text-center bg-[#10132e]" />
+                <span className="py-4 px-3 rounded-b-lg text-center bg-[#10132e]" />
                 {["React Native", "AWS", "MongoDB"].map((item, i) => {
                   return (
                     <span

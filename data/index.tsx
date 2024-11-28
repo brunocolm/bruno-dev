@@ -37,7 +37,7 @@ export const gridItems: GridItem[] = [
     id: 2,
     title: "Tech innovations",
     description: "Embracing the latest in",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+    className: "lg:col-span-2 md:col-span-3 md:row-span-2 md:min-h-[230px]",
     imgClassName: "",
     titleClassName: "justify-center",
     img: "",
