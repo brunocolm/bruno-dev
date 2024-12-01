@@ -13,6 +13,7 @@ import { HiXCircle } from "react-icons/hi2";
 //TODO: Character count
 
 enum SubmitStatus {
+  NONE = "NONE",
   PENDING = "PENDING",
   SENT = "SENT",
   ERROR = "ERROR",
@@ -20,7 +21,7 @@ enum SubmitStatus {
 
 export function AnimatedModalDemo() {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(
-    SubmitStatus.PENDING
+    SubmitStatus.NONE
   );
 
   return (
@@ -29,15 +30,13 @@ export function AnimatedModalDemo() {
         <ModalTrigger className="p-0 group/modal-btn">
           <SlideTextMainButton
             defaultText={
-              submitStatus === SubmitStatus.PENDING
+              submitStatus === SubmitStatus.NONE
                 ? "Let's get in touch"
                 : "Thank you!"
             }
-            slideText={
-              submitStatus === SubmitStatus.PENDING ? "🚀🚀🚀" : "🔮🔮🔮"
-            }
+            slideText={submitStatus === SubmitStatus.NONE ? "🚀🚀🚀" : "🔮🔮🔮"}
             icon={
-              submitStatus === SubmitStatus.PENDING ? (
+              submitStatus === SubmitStatus.NONE ? (
                 <FaLocationArrow />
               ) : (
                 <FaStar />
@@ -48,13 +47,24 @@ export function AnimatedModalDemo() {
         </ModalTrigger>
         <ModalBody>
           <ModalContent
-            className={cn(`${submitStatus !== SubmitStatus.PENDING && "md:p-0 p-0 h-full"}`)}
-          >
-            {submitStatus === SubmitStatus.PENDING && (
-              <ContactForm setSubmitStatus={setSubmitStatus} />
+            className={cn(
+              `${
+                [SubmitStatus.SENT, SubmitStatus.ERROR].includes(
+                  submitStatus
+                ) && "md:p-0 p-0 h-full"
+              }`
             )}
-            {submitStatus === SubmitStatus.SENT && <SubmitMessage />}
-            {submitStatus === SubmitStatus.ERROR && <ErrorMessage />}
+          >
+            {submitStatus === SubmitStatus.SENT ? (
+              <SubmitMessage />
+            ) : submitStatus === SubmitStatus.ERROR ? (
+              <ErrorMessage />
+            ) : (
+              <ContactForm
+                submitStatus={submitStatus}
+                setSubmitStatus={setSubmitStatus}
+              />
+            )}
           </ModalContent>
         </ModalBody>
       </Modal>
@@ -93,12 +103,17 @@ export const ErrorMessage = () => {
 };
 
 interface ContactFormProps {
+  submitStatus: SubmitStatus;
   setSubmitStatus: React.Dispatch<React.SetStateAction<SubmitStatus>>;
 }
 
-export const ContactForm = ({ setSubmitStatus }: ContactFormProps) => {
+export const ContactForm = ({
+  submitStatus,
+  setSubmitStatus,
+}: ContactFormProps) => {
   async function handleSubmit(event: any) {
     event.preventDefault();
+    setSubmitStatus(SubmitStatus.PENDING);
     const formData = new FormData(event.target);
     const object = Object.fromEntries(formData);
 
@@ -126,8 +141,8 @@ export const ContactForm = ({ setSubmitStatus }: ContactFormProps) => {
         Let&apos;s get in touch
       </h2>
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-        Have questions or ideas? Don&apos;t hesitate to reach out—we can collaborate
-        and bring your projects to life!
+        Have questions or ideas? Don&apos;t hesitate to reach out—we can
+        collaborate and bring your projects to life!
       </p>
 
       <form className="flex flex-col mt-8 items-center" onSubmit={handleSubmit}>
@@ -161,8 +176,9 @@ export const ContactForm = ({ setSubmitStatus }: ContactFormProps) => {
           />
         </LabelInputContainer>
         <button
-          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-1/2 text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-1/2 text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] disabled:scale-95 disabled:shadow-none disabled:opacity-90 disabled:bg-zinc-700 disabled:text-gray-700"
           type="submit"
+          disabled={submitStatus === SubmitStatus.PENDING}
         >
           Submit &rarr;
         </button>
