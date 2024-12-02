@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/utils/cn";
+import { cn, isMobile } from "@/utils/helpers";
 
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
   const rows = new Array(22).fill(1);
@@ -12,7 +12,6 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     "--green-300",
     "--yellow-300",
     "--red-300",
-    "--purple-300",
     "--blue-300",
     "--indigo-300",
     "--violet-300",
@@ -20,6 +19,70 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
   const getRandomColor = () => {
     return colors[Math.floor(Math.random() * colors.length)];
   };
+
+  const [litUpCells, setLitUpCells] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (!isMobile()) return;
+
+    const lightedUpCellsMinRatio = 0.2;
+    const lightedUpCellsMaxRatio = 0.4;
+    const numberOfRandomTurnOn = 12;
+    const numberOfRandomTurnOff = 15;
+
+    const turnOnRandomCell = (newLitUpCells: Set<string>) => {
+      let randomPosition: string;
+      do {
+        const randomRow = Math.floor(Math.random() * rows.length);
+        const randomCol = Math.floor(Math.random() * cols.length);
+        randomPosition = `${randomRow}-${randomCol}`;
+      } while (newLitUpCells.has(randomPosition));
+      newLitUpCells.add(randomPosition);
+    };
+
+    const turnOffRandomCell = (newLitUpCells: Set<string>) => {
+      const array = Array.from(newLitUpCells);
+      const randomIndex = Math.floor(Math.random() * array.length);
+      newLitUpCells.delete(array[randomIndex]);
+    };
+
+    const lightUpRandomCells = () => {
+      setLitUpCells((prev) => {
+        const newLitUpCells = new Set<string>(prev);
+
+        while (
+          newLitUpCells.size <
+          Math.floor(rows.length * cols.length * lightedUpCellsMinRatio)
+        ) {
+          turnOnRandomCell(newLitUpCells);
+        }
+
+        while (
+          newLitUpCells.size >
+          Math.floor(rows.length * cols.length * lightedUpCellsMaxRatio)
+        ) {
+          turnOffRandomCell(newLitUpCells);
+        }
+
+        const randomLight =
+          Math.floor(Math.random() * numberOfRandomTurnOn) + 1;
+
+        for (let i = 0; i < randomLight; i++) {
+          turnOnRandomCell(newLitUpCells);
+        }
+        const randomTurnOff =
+          Math.floor(Math.random() * numberOfRandomTurnOff) + 1;
+        for (let i = 0; i < randomTurnOff; i++) {
+          turnOffRandomCell(newLitUpCells);
+        }
+        return newLitUpCells;
+      });
+    };
+
+    const interval = setInterval(lightUpRandomCells, 1000);
+
+    return () => clearInterval(interval); // Cleanup
+  }, [cols.length, rows.length]);
 
   return (
     <div
@@ -37,36 +100,31 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
           key={`row` + i}
           className="w-16 h-8  border-l  border-slate-700 relative"
         >
-          {cols.map((_, j) => (
-            <motion.div
-              whileHover={{
-                backgroundColor: `var(${getRandomColor()})`,
-                transition: { duration: 0 },
-              }}
-              animate={{
-                transition: { duration: 2 },
-              }}
-              key={`col` + j}
-              className="w-16 h-8  border-r border-t border-slate-700 relative"
-            >
-              {j % 2 === 0 && i % 2 === 0 ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="absolute h-6 w-10 -top-[14px] -left-[22px] text-slate-700 stroke-[1px] pointer-events-none"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 6v12m6-6H6"
-                  />
-                </svg>
-              ) : null}
-            </motion.div>
-          ))}
+          {cols.map((_, j) => {
+            const cellKey = `${i}-${j}`;
+            return (
+              <motion.div
+                whileHover={{
+                  backgroundColor: `var(${getRandomColor()})`,
+                  transition: { duration: 0 },
+                }}
+                whileTap={{
+                  backgroundColor: `var(${getRandomColor()})`,
+                  transition: { duration: 0 },
+                }}
+                animate={{
+                  backgroundColor: litUpCells.has(cellKey)
+                    ? `var(${getRandomColor()})`
+                    : "#0f172a",
+                  transition: { duration: 1 },
+                }}
+                key={`col` + j}
+                className={"w-16 h-8  border-r border-t border-slate-700 relative"}
+              >
+                
+              </motion.div>
+            );
+          })}
         </motion.div>
       ))}
     </div>

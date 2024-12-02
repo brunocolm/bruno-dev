@@ -1,10 +1,10 @@
 "use client";
-import React, { useId, useMemo } from "react";
+import React, { useId } from "react";
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container, SingleOrMultiple } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/helpers";
 import { motion, useAnimation } from "framer-motion";
 
 type ParticlesProps = {

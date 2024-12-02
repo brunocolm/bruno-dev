@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Label } from "./Label";
 import { Input, TextArea } from "./Input";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/helpers";
 import { Modal, ModalBody, ModalContent, ModalTrigger } from "./AnimatedModal";
 import { FaLocationArrow, FaStar } from "react-icons/fa6";
 import { IconPosition, SlideTextMainButton } from "./MainButton";

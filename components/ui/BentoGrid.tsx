@@ -1,16 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/helpers";
 import { BackgroundGradientAnimation } from "./BackgroundGradient";
 import { GlobeDemo } from "./GlobeDemo";
-
 import { useState } from "react";
 import { IconPosition, MainButton } from "./MainButton";
 import { FiCopy } from "react-icons/fi";
 import animationData from "@/data/confetti.json";
 import { ColorGridDemo } from "./ColorGridDemo";
-/* import Lottie from "lottie-react"; */
 import dynamic from "next/dynamic";
 import { developerEmail } from "@/data";
 const DynamicLottie = dynamic(() => import("lottie-react"), { ssr: false });
@@ -90,9 +88,9 @@ export const BentoGridItem = ({
           )}
         </div>
         <div
-          className={cn(`absolute right-0 -bottom-5 ${
-            id === 5 && "w-full opacity-80"
-          }`)}
+          className={cn(
+            `absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"}`
+          )}
         >
           {spareImg && (
             <img
@@ -161,7 +159,11 @@ export const BentoGridItem = ({
           )}
           {id === 6 && (
             <div className="mt-5 relative">
-              <div className={cn(`absolute md:-bottom-28 -bottom-16 ${copied && "z-20"}`)}>
+              <div
+                className={cn(
+                  `absolute md:-bottom-28 -bottom-16 ${copied && "z-20"}`
+                )}
+              >
                 <DynamicLottie
                   animationData={animationData}
                   loop={copied}
