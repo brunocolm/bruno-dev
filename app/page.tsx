@@ -16,12 +16,12 @@ export default function Home() {
       name: "About",
       link: "/#about",
       icon: <FaHome />,
-    }
+    },
   ];
   return (
     <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-clip mx-auto sm:px-10">
-      <div className="max-w-7xl w-full ">
-        <h1>Bruno Development</h1>
+      <div className="max-w-7xl w-full">
+        <h1 className={"hidden"}>Bruno Development</h1>
         <NavBar navItems={navItems} />
         <Hero />
         <Grid />

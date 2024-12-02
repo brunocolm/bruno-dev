@@ -14,7 +14,7 @@ export function SparklesPreview({text,className,textClassName}:SparklesPreviewPr
       <h1 className={textClassName || "md:text-5xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20"}>
         {text}
       </h1>
-      <div className="w-1/2 h-40 relative mt-2">
+      <div className="flex w-1/2 h-40 relative mt-2 justify-center">
         {/* Gradients */}
         <div className="absolute top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-full blur-sm" />
         <div className="absolute top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-full" />
@@ -27,12 +27,9 @@ export function SparklesPreview({text,className,textClassName}:SparklesPreviewPr
           minSize={0.4}
           maxSize={1}
           particleDensity={1200}
-          className="w-full h-full"
+          className="w-full h-full [mask-image:radial-gradient(350px_150px_at_top,white_0%,transparent_100%)]"
           particleColor="#FFFFFF"
         />
-
-        {/* Radial Gradient to prevent sharp edges */}
-        <div className="absolute inset-0 w-full h-full bg-black-100 [mask-image:radial-gradient(350px_150px_at_top,transparent_0%,white)]"></div>
       </div>
     </div>
   );
