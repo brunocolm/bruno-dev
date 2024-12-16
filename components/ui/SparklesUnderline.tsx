@@ -2,16 +2,30 @@
 import React from "react";
 import { SparklesCore } from "../ui/Sparkles";
 
-interface SparklesPreviewProps{
-  text:string;
+interface SparklesPreviewProps {
+  text: string;
   className?: string;
   textClassName?: string;
 }
 
-export function SparklesPreview({text,className,textClassName}:SparklesPreviewProps) {
+export function SparklesPreview({
+  text,
+  className,
+  textClassName,
+}: SparklesPreviewProps) {
   return (
-    <div className={className || "w-full flex flex-col items-center justify-center overflow-hidden rounded-md"}>
-      <h1 className={textClassName || "md:text-5xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20"}>
+    <div
+      className={
+        className ||
+        "w-full flex flex-col items-center justify-center overflow-hidden rounded-md"
+      }
+    >
+      <h1
+        className={
+          textClassName ||
+          "md:text-5xl text-2xl sm:text-3xl lg:text-6xl font-bold text-center text-white relative z-20"
+        }
+      >
         {text}
       </h1>
       <div className="flex w-1/2 h-40 relative mt-2 justify-center">
