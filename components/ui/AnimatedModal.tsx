@@ -140,14 +140,18 @@ export const ModalBody = ({
 export const ModalContent = ({
   children,
   className,
+  bodyClassName,
 }: {
   children: ReactNode;
   className?: string;
+  bodyClassName?: string;
 }) => {
   return (
-    <div className={cn("flex flex-col flex-1 p-8 md:p-10", className)}>
-      {children}
-    </div>
+    <ModalBody className={bodyClassName}>
+      <div className={cn("flex flex-col flex-1 p-8 md:p-10", className)}>
+        {children}
+      </div>
+    </ModalBody>
   );
 };
 

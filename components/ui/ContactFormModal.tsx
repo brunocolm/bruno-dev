@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { Label } from "./Label";
 import { Input, TextArea } from "./Input";
 import { cn } from "@/utils/helpers";
-import { Modal, ModalBody, ModalContent, ModalTrigger } from "./AnimatedModal";
+import { Modal, ModalTrigger } from "./AnimatedModal";
 import { FaLocationArrow, FaStar } from "react-icons/fa6";
 import { IconPosition, SlideTextMainButton } from "./MainButton";
 import { developerEmail } from "@/data";
 import { HiXCircle } from "react-icons/hi2";
+import dynamic from "next/dynamic";
 
 //TODO: Need to fix height responsive
 //TODO: Character count
@@ -18,6 +19,10 @@ enum SubmitStatus {
   SENT = "SENT",
   ERROR = "ERROR",
 }
+
+const ModalContent = dynamic<any>(() =>
+  import("./AnimatedModal").then((mod) => mod.ModalContent)
+);
 
 export function AnimatedModalDemo() {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(
@@ -45,28 +50,25 @@ export function AnimatedModalDemo() {
             position={IconPosition.Right}
           />
         </ModalTrigger>
-        <ModalBody>
-          <ModalContent
-            className={cn(
-              `${
-                [SubmitStatus.SENT, SubmitStatus.ERROR].includes(
-                  submitStatus
-                ) && "md:p-0 p-0 h-full"
-              }`
-            )}
-          >
-            {submitStatus === SubmitStatus.SENT ? (
-              <SubmitMessage />
-            ) : submitStatus === SubmitStatus.ERROR ? (
-              <ErrorMessage />
-            ) : (
-              <ContactForm
-                submitStatus={submitStatus}
-                setSubmitStatus={setSubmitStatus}
-              />
-            )}
-          </ModalContent>
-        </ModalBody>
+        <ModalContent
+          className={cn(
+            `${
+              [SubmitStatus.SENT, SubmitStatus.ERROR].includes(submitStatus) &&
+              "md:p-0 p-0 h-full"
+            }`
+          )}
+        >
+          {submitStatus === SubmitStatus.SENT ? (
+            <SubmitMessage />
+          ) : submitStatus === SubmitStatus.ERROR ? (
+            <ErrorMessage />
+          ) : (
+            <ContactForm
+              submitStatus={submitStatus}
+              setSubmitStatus={setSubmitStatus}
+            />
+          )}
+        </ModalContent>
       </Modal>
     </div>
   );
